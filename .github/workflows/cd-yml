@@ -90,6 +90,6 @@ jobs:
     needs: deploy-preprod
     environment: prod
     steps:
-      - run: echo "Deployed to PROD"
+      - run: echo "Deployed to PROD"  
 
 
