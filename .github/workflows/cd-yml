@@ -1,4 +1,4 @@
-name: Continuous Dependent CI/CD Pipeline
+name: Continuous Dependent CI/CD Pipelines
 
 on:
   push:
