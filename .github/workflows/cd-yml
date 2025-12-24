@@ -1,10 +1,10 @@
-name: Continuous Dependent CI/CD Pipelines 
+name: Continuous Dependent CI/CD Pipeline
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
+
 
 jobs:
 
