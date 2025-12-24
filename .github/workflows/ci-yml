@@ -19,6 +19,6 @@ jobs:
 
         env:
 
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_PASSWORD: ${{ secrets.MY_PERSONAL}}
  
  
