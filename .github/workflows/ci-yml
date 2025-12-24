@@ -1,1 +1,24 @@
+name: Use Secrets
 
+on: [push]
+ 
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Use secret
+
+        run: |
+
+          echo "Username is ${{ secrets.MY_PERSONAL}}"
+
+
+        env:
+
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+ 
+ 
