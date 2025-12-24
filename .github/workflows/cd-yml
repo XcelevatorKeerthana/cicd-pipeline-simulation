@@ -15,73 +15,81 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
       - name: Build
-        run: |
-          echo "Building application..."
-          mvn clean package -DskipTests
+        run: mvn clean package -DskipTests
 
   scan:
     name: Security Scan
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Run security scan
-        run: |
-          echo "Running security scan..."
-          echo "Scan successful"
+        run: echo "Security scan successful"
 
   test:
     name: Run Tests
     runs-on: ubuntu-latest
     needs: scan
     steps:
-      - name: Run unit tests
-        run: |
-          echo "Running tests..."
-          mvn test
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Run tests
+        run: mvn test
+
   release:
     name: Release Artifact
     runs-on: ubuntu-latest
     needs: test
     steps:
       - name: Create release
-        run: |
-          echo "Releasing artifact..."
-          echo "Version tagged"
+        run: echo "Release completed"
+
   deploy-dev:
     name: Deploy to DEV
     runs-on: ubuntu-latest
     needs: release
     environment: dev
     steps:
-      - name: Deploy to DEV
-        run: |
-          echo "Deploying to DEV environment"
+      - run: echo "Deployed to DEV"
+
   deploy-sit:
     name: Deploy to SIT
     runs-on: ubuntu-latest
     needs: deploy-dev
     environment: sit
     steps:
-      - name: Deploy to SIT
-        run: |
-          echo "Deploying to SIT environment"
+      - run: echo "Deployed to SIT"
+
   deploy-preprod:
     name: Deploy to Pre-Prod
     runs-on: ubuntu-latest
     needs: deploy-sit
     environment: preprod
     steps:
-      - name: Deploy to Pre-Prod
-        run: |
-          echo "Deploying to Pre-Prod environment"
+      - run: echo "Deployed to Pre-Prod"
+
   deploy-prod:
     name: Deploy to PROD
     runs-on: ubuntu-latest
     needs: deploy-preprod
     environment: prod
     steps:
-      - name: Deploy to PROD
-        run: |
-          echo "Deploying to PROD environment"
+      - run: echo "Deployed to PROD"
+
 
